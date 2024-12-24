@@ -1,0 +1,1 @@
+// This file has been replaced by the shared FAQ component and can be safely deleted
