@@ -12,14 +12,16 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
+import { getDictionary } from "@/lib/content/pageData"
 
 interface LangPageProps {
-    params: {
-        lang: string        
-    }
+    params: Promise<{ lang: 'en' | 'fr' | 'ar' }>
 }
 
-export default function LangPage({ params }: LangPageProps) {
+export default async function LangPage({ params }: LangPageProps) {
+    const lang = (await params).lang;
+    const dict = await getDictionary(lang) // en
+
     return (
         <div className="relative">
             <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-24 pb-16">
@@ -73,18 +75,18 @@ export default function LangPage({ params }: LangPageProps) {
                                 ))}
                             </div>
                             <span className="text-sm">
-                                Join over <span className="font-semibold">50,000</span> users
+                                {dict.hero.userCount.prefix} <span className="font-semibold">{dict.hero.userCount.number}</span> {dict.hero.userCount.suffix}
                             </span>
                         </div>
 
                         <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight text-gray-900 mb-6">
-                            Discover Lebanon,
+                            {dict.hero.title.line1}
                             <br />
-                            Save more.
+                            {dict.hero.title.line2}
                         </h1>
 
                         <p className="text-xl text-gray-600 mb-8 max-w-xl">
-                            Explore new places and experiences in Lebanon - all while paying less with exclusive deals just for 961 members!
+                            {dict.hero.description}
                         </p>
 
                         {/* App Store Buttons */}
@@ -166,7 +168,7 @@ export default function LangPage({ params }: LangPageProps) {
                         <div className="mt-8 space-y-4">
                             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                                 <Button className="w-full bg-[#FF0000] hover:bg-[#FF0000]/90 rounded-full text-lg font-bold py-6 shadow-[0_8px_30px_rgb(255,0,0,0.2)] hover:shadow-[0_8px_40px_rgb(255,0,0,0.3)] transition-all duration-300">
-                                    Join Now
+                                    {dict.hero.joinButton}
                                     <span className="ml-2">→</span>
                                 </Button>
                             </div>
@@ -185,7 +187,7 @@ export default function LangPage({ params }: LangPageProps) {
                                 </svg>
                             </div>
                             <h3 className="text-2xl font-black mb-2">Explore Places</h3>
-                            <p className="text-gray-600">How many new places have you tried recently? We'll show you the hottest spots.</p>
+                            <p className="text-gray-600">How many new places have you tried recently? We&apos;ll show you the hottest spots.</p>
                         </div>
 
                         <div className="text-center">
@@ -225,7 +227,7 @@ export default function LangPage({ params }: LangPageProps) {
                                             </svg>
                                         ))}
                                     </div>
-                                    <p className="text-white text-lg mb-6">"Got my money's worth from just one deal! 😍"</p>
+                                    <p className="text-white text-lg mb-6">&quot;Got my money&apos;s worth from just one deal! 😍&quot;</p>
                                     <div className="flex items-center gap-3">
                                         <p className="text-white font-semibold">Nour H.</p>
                                     </div>
@@ -239,7 +241,7 @@ export default function LangPage({ params }: LangPageProps) {
                                             </svg>
                                         ))}
                                     </div>
-                                    <p className="text-white text-lg mb-6">"A7la app bi Lebnen! ❤️"</p>
+                                    <p className="text-white text-lg mb-6">&quot;A7la app bi Lebnen! ❤️&quot;</p>
                                     <div className="flex items-center gap-3">
                                         <p className="text-white font-semibold">Rami K.</p>
                                     </div>
@@ -253,7 +255,7 @@ export default function LangPage({ params }: LangPageProps) {
                                             </svg>
                                         ))}
                                     </div>
-                                    <p className="text-white text-lg mb-6">"Perfect for discovering new restaurants. Already saved more than the membership cost!"</p>
+                                    <p className="text-white text-lg mb-6">&quot;Perfect for discovering new restaurants. Already saved more than the membership cost!&quot;</p>
                                     <div className="flex items-center gap-3">
                                         <p className="text-white font-semibold">Sarah M.</p>
                                     </div>
@@ -267,7 +269,7 @@ export default function LangPage({ params }: LangPageProps) {
                                             </svg>
                                         ))}
                                     </div>
-                                    <p className="text-white text-lg mb-6">"Thanks for supporting local businesses 🇱🇧"</p>
+                                    <p className="text-white text-lg mb-6">&quot;Thanks for supporting local businesses 🇱🇧&quot;</p>
                                     <div className="flex items-center gap-3">
                                         <p className="text-white font-semibold">Maya R.</p>
                                     </div>
@@ -281,7 +283,7 @@ export default function LangPage({ params }: LangPageProps) {
                                             </svg>
                                         ))}
                                     </div>
-                                    <p className="text-white text-lg mb-6">"Discovering so many new spots 🔥"</p>
+                                    <p className="text-white text-lg mb-6">&quot;Discovering so many new spots 🔥&quot;</p>
                                     <div className="flex items-center gap-3">
                                         <p className="text-white font-semibold">Karim S.</p>
                                     </div>
@@ -363,7 +365,7 @@ export default function LangPage({ params }: LangPageProps) {
                                         <button className="h-[48px] w-[140px]">
                                             <Image
                                                 src="/images/app-store-badge.svg"
-                                                alt="Download on the App Store"
+                                                alt={dict.hero.appStoreAlt}
                                                 width={140}
                                                 height={48}
                                                 className="w-full h-full"
@@ -391,7 +393,7 @@ export default function LangPage({ params }: LangPageProps) {
                                         <button className="h-[48px] w-[160px]">
                                             <Image
                                                 src="/images/google-play-badge.png"
-                                                alt="Get it on Google Play"
+                                                alt={dict.hero.googlePlayAlt}
                                                 width={160}
                                                 height={48}
                                                 className="w-full h-full"
@@ -444,7 +446,7 @@ export default function LangPage({ params }: LangPageProps) {
                 <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24 bg-red-50 rounded-3xl">
                     <div className="text-center mb-16">
                         <div className="flex items-center justify-center gap-4 mb-4">
-                            <h2 className="text-4xl font-black">It's worth it!</h2>
+                            <h2 className="text-4xl font-black">It&apos;s worth it!</h2>
                             <div className="inline-flex items-center gap-2 bg-white rounded-full px-4 py-2">
                                 <div className="flex -space-x-2">
                                     {[
@@ -468,7 +470,7 @@ export default function LangPage({ params }: LangPageProps) {
                             </div>
                         </div>
                         <div className="space-y-2">
-                            <p className="text-xl text-gray-600">Become a member and get access to unlimited deals at Lebanon's favorite places!</p>
+                            <p className="text-xl text-gray-600">Become a member and get access to unlimited deals at Lebanon&apos;s favorite places!</p>
                             <p className="text-xl font-black text-gray-900">Cheaper than a shawarma! 🥙</p>
                         </div>
                     </div>
@@ -569,7 +571,7 @@ export default function LangPage({ params }: LangPageProps) {
                             ))}
                         </div>
                         <p className="text-base text-gray-700 mb-2">
-                            "I've been using it for 2 weeks now and I'm discovering so many new places! Membership was worth it after redeeming my first deal!"
+                            &quot;I&apos;ve been using it for 2 weeks now and I&apos;m discovering so many new places! Membership was worth it after redeeming my first deal!&quot;
                         </p>
                         <div>
                             <span className="text-sm font-semibold text-gray-900">Jessica K.</span>

@@ -1,0 +1,17 @@
+{
+  "hero": {
+    "userCount": {
+      "prefix": "Rejoignez plus de",
+      "number": "50,000",
+      "suffix": "utilisateurs"
+    },
+    "title": {
+      "line1": "Découvrez le Liban,",
+      "line2": "Économisez plus."
+    },
+    "description": "Explorez de nouveaux endroits et expériences au Liban - tout en payant moins avec des offres exclusives pour les membres 961 !",
+    "appStoreAlt": "Télécharger sur l'App Store",
+    "googlePlayAlt": "Disponible sur Google Play",
+    "joinButton": "Rejoignez-nous"
+  }
+}

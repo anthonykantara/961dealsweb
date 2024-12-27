@@ -1,0 +1,17 @@
+{
+  "hero": {
+    "userCount": {
+      "prefix": "Join over",
+      "number": "50,000",
+      "suffix": "users"
+    },
+    "title": {
+      "line1": "Discover Lebanon,",
+      "line2": "Save more."
+    },
+    "description": "Explore new places and experiences in Lebanon - all while paying less with exclusive deals just for 961 members!",
+    "appStoreAlt": "Download on the App Store",
+    "googlePlayAlt": "Get it on Google Play",
+    "joinButton": "Join Now"
+  }
+}
